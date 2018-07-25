@@ -7,7 +7,7 @@
       <b-col cols="8">
         <h3>{{ project.name }}</h3>
       </b-col>
-      <b-col cols="3">
+      <b-col cols="3" class="sm-btn-project">
         <b-btn size="sm" @click.stop="delProject" class="mr-2">
           <icon name="trash"></icon>
         </b-btn>
@@ -87,10 +87,10 @@ export default {
       cursor: pointer;
 }
 
-.blue-header button {
-      display: none;
+.sm-btn-project button {
+    display: none;
 }
-.blue-header:hover button {
+.sm-btn-project:hover button {
    display : inline;
    float: right;
    background-color: transparent;

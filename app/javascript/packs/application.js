@@ -31,7 +31,7 @@ Vue.use(TurbolinksAdapter);
 Vue.config.productionTip = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    console.log('after dom content loaded');
     Vue.http.headers.common['X-CSRF-Token'] = document
     .querySelector('meta[name="csrf-token"]')
     .getAttribute('content');

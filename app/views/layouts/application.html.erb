@@ -16,18 +16,20 @@
       
       
     <%= yield %>
-<% if current_user %> 
-  <ul> 
-    <li><%= current_user.email %></li>
-    <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-    <li><%= link_to "Change your password", 'users/edit' %></a></li>
+<% if current_user %>
+  <div class="text-center"><p><%= current_user.email %></p>
+      <p><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></p>
+      <p><%= link_to "Change your password", 'users/edit' %></a></p>
+              <% if current_page?('/users/edit') %>
+                  <p><%= link_to 'Home', '../' %></p>
+              <% end %>
         <% if current_user.try(:admin?) %>
-            <li><%= link_to 'Users', users_path %></li>
+              <p><%= link_to 'Users', users_path %></p>
               <% if current_page?('/users') %>
-                <li><%= link_to 'Home', '/' %></li>
+                  <p><%= link_to 'Home', '../' %></p>
               <% end %>
         <% end %>
-  </ul> 
+  </div>
 <% end %>
 
   </body>

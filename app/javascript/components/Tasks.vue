@@ -2,6 +2,7 @@
     <b-container class="table_task">
       <b-table hover :items="tasks" :fields="fields" class="bg-white text-dark">
         <template slot="actions" slot-scope="row">
+        <div class="sml-btn-tasks">
         <div class="btn-group-vertical">
           <b-btn size="sm" @click.stop="upTask(row.item.id, row.item.name)" class="mr-2 buttonUp">
             <icon name="angle-up"></icon>
@@ -16,6 +17,7 @@
           <b-btn size="sm" @click.stop="delTask(row.item.id)" class="mr-2">
             <icon name="trash"></icon>
           </b-btn>
+        </div>
         </template>
         <template slot="status" slot-scope="row">
           <b-form-checkbox v-model="row.item.status"
@@ -121,7 +123,7 @@ table > thead {
 table tr:hover {
     cursor: pointer;
 }
-.table_task  button {
+.sml-btn-tasks button {
   background-color: transparent;
   border-color: transparent;
   color: #d1d1d1;
