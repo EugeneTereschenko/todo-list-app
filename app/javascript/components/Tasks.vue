@@ -123,6 +123,10 @@ table > thead {
 table tr:hover {
     cursor: pointer;
 }
+.sml-btn-tasks {
+    height: 45px;
+}
+
 .sml-btn-tasks button {
   background-color: transparent;
   border-color: transparent;
@@ -139,13 +143,17 @@ table td {
     border-right: 1px solid #ddd;
     border-top: 1px solid #ddd;
 }
+table tr {
+  height: 45px;
+}
+
 table td:last-child {
     border-right: none;
 }
 .buttonUp {
-  height: 20px;
+  height: 18px;
 }
 .buttonDown {
-  height: 20px;
+  height: 18px;
 }
 </style>

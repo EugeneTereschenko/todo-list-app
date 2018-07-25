@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="project">
     <ul v-if="projects.length">
       <project
         v-for="project in projects"
@@ -77,3 +77,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.project {
+  min-height: 200px;
+}
+</style>
