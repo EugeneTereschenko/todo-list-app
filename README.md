@@ -1,26 +1,12 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # todo-list-app
 
+## Description
+
+todo-list-app is a Single Page Application based on Ruby on Rails, using Vue.js, compiled with Webpack,
+which helps manage tasks and projects more effectively.
+
+## Heroku
+https://intense-escarpment-74980.herokuapp.com/
+
+## SQL task 
+task.sql
