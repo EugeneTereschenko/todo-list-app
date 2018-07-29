@@ -30,15 +30,24 @@ Vue.use(TurbolinksAdapter);
 
 Vue.config.productionTip = false;
 
-document.addEventListener('DOMContentLoaded', () => {
+function init() {
     console.log('after dom content loaded');
     Vue.http.headers.common['X-CSRF-Token'] = document
-    .querySelector('meta[name="csrf-token"]')
-    .getAttribute('content');
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute('content');
 
-    
+
     const app = new Vue({
         el: '#app',
         render: h => h(App)
     });
-});
+}
+
+if (document.readyState !== 'loading') {
+    console.log('document is already ready, just execute code here');
+    init();
+} else {
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+    });
+}
