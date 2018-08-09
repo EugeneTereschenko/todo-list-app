@@ -4,13 +4,13 @@ class TasksController < ApplicationController
     def create
         project = Project.find(params[:project_id]) 
         newPriority = project.tasks.length + 1
-        task = project.tasks.create(params.require(:task).permit(:name, :status))
+        task = project.tasks.create(params.require(:task).permit(:name, :status, :deadline))
         task.update_attribute(:priority, newPriority)
         render json: task
     end
     def update
         task = Task.find(params[:id])
-        task.update_attributes(params.require(:task).permit(:name, :status, :priority))
+        task.update_attributes(params.require(:task).permit(:name, :status, :priority, :deadline))
         render json: task
     end
     def destroy

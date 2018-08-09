@@ -7,7 +7,9 @@
       <b-col cols="11">
         <b-form-input type="text" class="add_task_input"
         placeholder="Start typing here to create a task"
-        v-model="value"></b-form-input>
+        v-model="value"></b-form-input>    
+        <b-form-input v-model="deadline" 
+                  type="date" class="deadline"></b-form-input>
         <b-btn @click="addTask()" class="left">Add Task</b-btn>
        </b-col>
     </b-row>
@@ -18,7 +20,8 @@
 export default {
   data() {
     return {
-      value: ""
+      value: "",
+      deadline: new Date()
     };
   },
   methods: {
@@ -26,7 +29,7 @@ export default {
       this.value = "";
     },
     addTask() {
-      this.$emit("clicked", this.value);
+      this.$emit("clicked", this.value, this.deadline);
       this.clearName();
     }
   }
@@ -35,7 +38,11 @@ export default {
 
 <style>
 .add_task_input {
-  width: 80%;
+  width: 70%;
+  float: left;
+}
+.deadline {
+  width: 15%;
   float: left;
 }
 .trgray {

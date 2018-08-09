@@ -90,7 +90,7 @@ export default {
 .sm-btn-project button {
     display: none;
 }
-.sm-btn-project:hover button {
+.blue-header:hover button {
    display : inline;
    float: right;
    background-color: transparent;

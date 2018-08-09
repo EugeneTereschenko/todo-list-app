@@ -11,7 +11,7 @@
             <icon name="angle-down"></icon>
           </b-btn>
         </div>
-          <b-btn size="sm" @click.stop="showEditTask(row.item.id, row.item.name)" class="mr-2">
+          <b-btn size="sm" @click.stop="showEditTask(row.item.id, row.item.name, row.item.deadline)" class="mr-2">
             <icon name="pencil"></icon>
           </b-btn>
           <b-btn size="sm" @click.stop="delTask(row.item.id)" class="mr-2">
@@ -36,6 +36,8 @@
             <form @submit.stop.prevent="handleSubmit">
                 <b-form-input type="text"
                         v-model="name"></b-form-input>
+                <b-form-input v-model="deadline" 
+                  type="date"></b-form-input>
             </form>
     </b-modal >
     </b-container>
@@ -53,6 +55,7 @@ export default {
     return {
       name: "",
       id: "",
+      deadline: "",
       fields: [
         {
           key: "status",
@@ -61,6 +64,13 @@ export default {
         {
           key: "name",
           class: "text-left"
+        },
+        {
+          key: "deadline",
+          class: "col-2",
+          formatter: (value, key, item) => {
+            return  this.format(item.deadline);
+          }
         },
         {
           key: "actions",
@@ -73,10 +83,10 @@ export default {
     delTask(task_id) {
       this.$emit("delete_task", task_id);
     },
-
-    showEditTask(task_id, task_name) {
+    showEditTask(task_id, task_name, deadline) {
       this.name = task_name;
       this.id = task_id;
+      this.deadline = this.format(deadline);
       this.$refs.editTask.show();
     },
 
@@ -91,7 +101,7 @@ export default {
     },
 
     handleSubmit() {
-      this.$emit("edit_task", this.name, this.id);
+      this.$emit("edit_task", this.name, this.id, this.deadline);
       this.$refs.editTask.hide();
     },
 
@@ -105,6 +115,13 @@ export default {
 
     downTask(task_id, task_name) {
       this.$emit("down_status_task", task_name, task_id);
+    },
+    format(deadline) {
+      let d = new Date(deadline);
+      let dd = d.getDate();
+      let mm = d.getMonth() + 1;
+      let yyyy = d.getFullYear();
+      return dd + "." + mm + "." + yyyy;
     }
   }
 };
@@ -121,10 +138,10 @@ table > thead {
   display: none !important;
 }
 table tr:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .sml-btn-tasks {
-    height: 45px;
+  height: 45px;
 }
 
 .sml-btn-tasks button {
@@ -137,18 +154,18 @@ table tr:hover {
   display: inline;
   background-color: transparent;
   border-color: transparent;
-    color: #888888;
+  color: #888888;
 }
 table td {
-    border-right: 1px solid #ddd;
-    border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
 }
 table tr {
   height: 45px;
 }
 
 table td:last-child {
-    border-right: none;
+  border-right: none;
 }
 .buttonUp {
   height: 18px;

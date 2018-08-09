@@ -30,12 +30,12 @@ export default {
     };
   },
   methods: {
-    addTask(newTaskName) {
+    addTask(newTaskName, newDeadline) {
       const trimmedText = newTaskName.trim();
       if (trimmedText) {
         this.$http
           .post(`/projects/${this.project.id}/tasks/`, {
-            task: { name: trimmedText, status: "created" }
+            task: { name: trimmedText, status: "created", deadline: newDeadline}
           })
           .then(response => {
             this.tasks.push(response.body);
@@ -68,10 +68,10 @@ export default {
         });
     },
 
-    editTask(task_name, task_id) {
+    editTask(task_name, task_id, newdeadline) {
       this.$http
         .put(`projects/${this.project.id}/tasks/${task_id}`, {
-          task: { name: task_name }
+          task: { name: task_name, deadline: newdeadline }
         })
         .then(response => {
           for (let i = 0; i < this.tasks.length; i++) {
