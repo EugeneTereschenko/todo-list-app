@@ -17,6 +17,7 @@
         <b-form-input type="text"
     placeholder="Enter project name"
     v-model="name"></b-form-input>
+            <span v-show="validName === false" class="red_error">Please Enter at least 3 letters</span>
       </form>
     </b-modal >
   </div >
@@ -26,7 +27,8 @@
 export default {
   data() {
     return {
-      name: ""
+      name: "",
+      validName: true     
     };
   },
 
@@ -38,9 +40,10 @@ export default {
     handleOk(evt) {
       // Prevent modal from closing
       evt.preventDefault();
-      if (!this.name) {
-        alert("Please enter project name");
+      if (this.name.length < 3) {
+        this.validName = false;
       } else {
+        this.validName = true;
         this.handleSubmit();
       }
     },

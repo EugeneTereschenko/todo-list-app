@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  validates :name, presence: true,
+  validates :name, :deadline, presence: true,
                         length: { minimum: 1 }
   belongs_to :project
     

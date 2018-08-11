@@ -31,13 +31,18 @@
       <!-- Edit modal -->
       <b-modal id="modalEditTask"
             ref="editTask"
-            title="Edit task name"
+            title="Edit task name or deadline"
                 @ok="handleOk">
             <form @submit.stop.prevent="handleSubmit">
                 <b-form-input type="text"
                         v-model="name"></b-form-input>
-                <b-form-input v-model="deadline" 
-                  type="date"></b-form-input>
+                <span v-show="validName === false" class="red_error">Please Enter at least 3 letters</span>
+                <date-picker  v-model="deadline" lang="en" 
+                :not-before="new Date()" 
+                class="deadline"  
+                type="datetime" format="DD-MM-YYYY hh:mm:ss" 
+                :minute-step="10" confirm></date-picker>
+                <span v-show="validDeadline === false" class="red_error">Deadline is required</span>
             </form>
     </b-modal >
     </b-container>
@@ -56,6 +61,8 @@ export default {
       name: "",
       id: "",
       deadline: "",
+      validName: true,
+      validDeadline: true,
       fields: [
         {
           key: "status",
@@ -86,16 +93,23 @@ export default {
     showEditTask(task_id, task_name, deadline) {
       this.name = task_name;
       this.id = task_id;
-      this.deadline = this.format(deadline);
+      this.deadline = new Date(deadline);
       this.$refs.editTask.show();
     },
-
+    isvalidName() {
+      this.validName = this.name.length < 3 ? false : true;
+      return this.validName;
+    },
+    isvalidDeadline() {
+      this.validDeadline = this.deadline === null ? false : true;
+      return this.validDeadline;
+    },
     handleOk(evt) {
       // Prevent modal from closing
       evt.preventDefault();
-      if (!this.name) {
-        alert("Please enter task name");
-      } else {
+      this.isvalidName();
+      this.isvalidDeadline()
+      if (this.isvalidName() && this.isvalidDeadline()) {
         this.handleSubmit();
       }
     },
@@ -117,11 +131,7 @@ export default {
       this.$emit("down_status_task", task_name, task_id);
     },
     format(deadline) {
-      let d = new Date(deadline);
-      let dd = d.getDate();
-      let mm = d.getMonth() + 1;
-      let yyyy = d.getFullYear();
-      return dd + "." + mm + "." + yyyy;
+      return this.$moment(deadline).format("DD-MM-YYYY hh:mm:ss");;
     }
   }
 };

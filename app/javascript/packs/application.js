@@ -18,6 +18,8 @@ import bModalDirective from "bootstrap-vue/es/directives/modal/modal";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "vue-awesome/icons";
+import moment from "vue-moment";
+import DatePicker from 'vue2-datepicker'
 import Icon from "vue-awesome/components/Icon";
 import App from "../app";
 
@@ -27,6 +29,8 @@ Vue.component("b-modal", bModal);
 Vue.directive("b-modal", bModalDirective);
 Vue.use(VueResource);
 Vue.use(TurbolinksAdapter);
+Vue.component("date-picker", DatePicker);
+Vue.use(moment);
 
 Vue.config.productionTip = false;
 

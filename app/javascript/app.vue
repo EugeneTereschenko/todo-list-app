@@ -12,7 +12,7 @@ import projects from "./components/Projects.vue";
 
 export default {
   name: "App",
-  components: { projects }
+  components: { projects },
 };
 </script>
 
