@@ -80,6 +80,9 @@ export default {
           key: "deadline",
           class: "col-2",
           formatter: (value, key, item) => {
+            if (item.deadline === null) {
+              item.deadline = new Date();
+            }
             return  this.format(item.deadline);
           }
         },
