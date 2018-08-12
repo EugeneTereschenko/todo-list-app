@@ -83,7 +83,7 @@ export default {
             if (item.deadline === null) {
               item.deadline = new Date();
             }
-            return  this.format(item.deadline);
+            return this.format(item.deadline);
           }
         },
         {
@@ -115,7 +115,7 @@ export default {
       // Prevent modal from closing
       evt.preventDefault();
       this.isvalidName();
-      this.isvalidDeadline()
+      this.isvalidDeadline();
       if (this.isvalidName() && this.isvalidDeadline()) {
         this.handleSubmit();
       }
@@ -138,7 +138,7 @@ export default {
       this.$emit("down_status_task", task_name, task_id);
     },
     format(deadline) {
-      return this.$moment(deadline).format("DD-MM-YYYY hh:mm:ss");;
+      return this.$moment(deadline).format("DD-MM-YYYY hh:mm:ss");
     }
   }
 };
