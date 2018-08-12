@@ -14,10 +14,12 @@
              @ok="handleOk"
              @shown="clearName">
       <form @submit.stop.prevent="handleSubmit">
+      <div class = "edit_item">
         <b-form-input type="text"
     placeholder="Enter project name"
     v-model="name"></b-form-input>
             <span v-show="validName === false" class="red_error">Please Enter at least 3 letters</span>
+      </div>
       </form>
     </b-modal >
   </div >

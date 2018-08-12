@@ -34,15 +34,19 @@
             title="Edit task name or deadline"
                 @ok="handleOk">
             <form @submit.stop.prevent="handleSubmit">
-                <b-form-input type="text"
+                  <div class = "edit_item">
+                  <b-form-input type="text"
                         v-model="name"></b-form-input>
                 <span v-show="validName === false" class="red_error">Please Enter at least 3 letters</span>
+                </div>
+                <div class = "edit_item">
                 <date-picker  v-model="deadline" lang="en" 
                 :not-before="new Date()" 
                 class="deadline"  
                 type="datetime" format="DD-MM-YYYY hh:mm:ss" 
                 :minute-step="10" confirm></date-picker>
                 <span v-show="validDeadline === false" class="red_error">Deadline is required</span>
+                </div>
             </form>
     </b-modal >
     </b-container>
@@ -150,10 +154,12 @@ table > thead {
 table tr:hover {
   cursor: pointer;
 }
-.sml-btn-tasks {
-  height: 45px;
+.edit_item {
+  height: 70px;
 }
-
+.sml-btn-tasks {
+  height: 50px;
+}
 .sml-btn-tasks button {
   background-color: transparent;
   border-color: transparent;

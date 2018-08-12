@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   validates :name, :deadline, presence: true,
-                        length: { minimum: 1 }
+                        length: { minimum: 3 }
   belongs_to :project
     
     after_destroy :update_priority

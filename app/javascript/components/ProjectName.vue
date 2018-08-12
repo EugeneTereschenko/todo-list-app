@@ -1,6 +1,7 @@
 <template>
+<div>
   <b-container class="blue-header">
-    <b-row align-v="center">
+    <b-row class="padding10">
       <b-col cols="1">
           <icon name="list-alt"></icon>
       </b-col>
@@ -16,18 +17,21 @@
         </b-btn>
       </b-col>
     </b-row>
-    <b-modal id="modalEditProject"
+  </b-container>
+  <b-modal id="modalEditProject"
             ref="editProject"
             title="Edit project name"
                 @ok="handleOk"
                 @shown="putName">
             <form @submit.stop.prevent="handleSubmit">
+              <div class = "edit_item">
                 <b-form-input type="text"
                         v-model="name"></b-form-input>
+                <span v-show="validName === false" class="red_error">Please Enter at least 3 letters</span>
+              </div>
             </form>
     </b-modal >
-    
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -41,7 +45,8 @@ export default {
 
   data() {
     return {
-      name: ""
+      name: "",
+      validName: true
     };
   },
 
@@ -57,13 +62,14 @@ export default {
     putName() {
       this.name = this.project.name;
     },
-
+    isvalidName() {
+      this.validName = this.name.length < 3 ? false : true;
+      return this.validName;
+    },
     handleOk(evt) {
       // Prevent modal from closing
       evt.preventDefault();
-      if (!this.name) {
-        alert("Please enter project name");
-      } else {
+      if (this.isvalidName()) {
         this.handleSubmit();
       }
     },
@@ -87,7 +93,7 @@ export default {
       cursor: pointer;
 }
 
-.sm-btn-project button {
+.blue-header button {
     display: none;
 }
 .blue-header:hover button {

@@ -13,11 +13,7 @@ class ProjectsController < ApplicationController
         logger.warn current_user
         logger.warn " TEST "
         project = user.projects.create(params.require(:project).permit(:name))
-        render json: project
-        
-        
-        
-        
+        render json: project        
     end 
     def destroy
         user = User.find_by_id(current_user)
